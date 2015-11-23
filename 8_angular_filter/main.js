@@ -1,5 +1,16 @@
 
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ['myFilters']);
+
+
+angular.module('myFilters', []).filter('superstar', function() {
+  return function(input) {
+    return input.nickname + ' ' + input.name.split(" ")[0];
+  };
+});
+
+// app.filter('superstar', function(input) {
+//  return input.nickname + ' ' + input.name;
+// });
 
 app.controller('ProfileController', function ($scope) {
 	$scope.profiles = [
@@ -39,5 +50,6 @@ app.controller('ProfileController', function ($scope) {
       imageURL: "https://upload.wikimedia.org/wikipedia/commons/d/d8/U09_Luis_Su%C3%A1rez_7540.jpg",
     },
   ]
+
 
 });

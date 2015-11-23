@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<title>Blog</title>
+	<link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="main.css" rel="stylesheet">
+</head>
+
+<body ng-controller="BlogListController as ctrl">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand"
+			   href="/">Controllers
+			</a>
+		</div>
+		,
+	</div>
+</nav>
+
+
+<div class="row" ng-repeat="post in ctrl.posts | orderBy:'-date' | slice:0:5">
+<blockquote>
+  <p><mark>{{post.title}}</mark></p>
+  <p>{{post.content| preview:0:15}}</p>
+  <footer>{{post.author}} <cite title="Source Title">{{post.date}}</cite></footer>
+</blockquote>
+</div>
+
+<div class="container main-content" ng-controller="BlogListController">
+
+	<form>
+		<div class="form-group">
+			<label for="title">Title</label>
+			<input type="text" class="form-control" ng-model="ctrl.title">
+		</div>
+
+		<div class="form-group">
+			<label for="content">Content</label>
+			<textarea rows="8" class="form-control" ng-model="ctrl.content"></textarea>
+		</div>
+
+		<div class="form-group">
+			<input type="text" class="form-control" ng-model="ctrl.author">
+			<button class="btn btn-primary" ng-click="ctrl.save()">Post</button>
+		</div>
+	</form>
+
+</div>
+
+<script src="../libs/angular/angular.min.js"></script>
+<script src="../libs/underscorejs/underscore.min.js"></script>
+<script src="main.js"></script>
+
+
+</body>
+</html>

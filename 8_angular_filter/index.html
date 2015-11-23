@@ -21,7 +21,7 @@
 
 
 <div class="container main-content">
-	<input type="text" placeholder="filter"/>
+	<input type="text" placeholder="filter" ng-model="filfilter.nickname"/>
 	<table>
 		<tr>
 			<th>
@@ -37,6 +37,23 @@
 				Income
 			</th>
 		</tr>
+
+        <tr ng-repeat="profile in profiles | filter:filfilter">
+            <td>
+                <img src="{{ profile.imageURL }}" width="40px">
+            </td>
+            <td>
+                {{profile | superstar}}
+            </td>
+            <td>
+                {{profile.birthdate | date:'dd/MM/yyyy'}}
+            </td>
+            <td>
+                {{profile.income | currency}}
+            </td>
+		</tr>
+
+
 	</table>
 </div>
 
